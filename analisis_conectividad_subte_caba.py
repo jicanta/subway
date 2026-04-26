@@ -68,7 +68,7 @@ def draw_network_map(grafo: nx.Graph, pos: dict[int, tuple[float, float]], outpu
     nx.draw_networkx_nodes(grafo, pos, node_size=250, node_color=colors, edgecolors="black", linewidths=0.4)
     nx.draw_networkx_edges(grafo, pos, edge_color="gray", width=[width * 0.6 for width in widths])
     nx.draw_networkx_labels(grafo, pos, labels=labels, font_size=6, font_color="black")
-    plt.title("Ejercicio 1.a - Red de subte de CABA")
+    plt.title("Red de subte de CABA")
     plt.axis("off")
     plt.tight_layout()
     plt.savefig(output, dpi=200, bbox_inches="tight")
@@ -180,8 +180,8 @@ def main() -> None:
     grafo = build_graph(estaciones, conexiones)
     pos_geo, pos_diag = build_positions(posiciones, diagrama)
 
-    draw_network_map(grafo, pos_geo, FIGURES_DIR / "1a_red_subte_mapa.png")
-    draw_network_map(grafo, pos_diag, FIGURES_DIR / "1a_red_subte_diagrama.png")
+    draw_network_map(grafo, pos_geo, FIGURES_DIR / "red_subte_caba_mapa_geografico.png")
+    draw_network_map(grafo, pos_diag, FIGURES_DIR / "red_subte_caba_mapa_esquematico.png")
 
     degree = dict(grafo.degree())
     betweenness = nx.betweenness_centrality(grafo, weight="tiempo")
@@ -193,8 +193,8 @@ def main() -> None:
         grafo,
         pos_geo,
         {node: float(value) for node, value in degree.items()},
-        "Ejercicio 1.b - Cantidad de conexiones",
-        FIGURES_DIR / "1b_grado.png",
+        "Centralidad local por grado",
+        FIGURES_DIR / "centralidad_estaciones_por_grado.png",
         scale=90,
         base=120,
     )
@@ -202,8 +202,8 @@ def main() -> None:
         grafo,
         pos_geo,
         betweenness,
-        "Ejercicio 1.b - Betweenness",
-        FIGURES_DIR / "1b_betweenness.png",
+        "Centralidad por intermediacion",
+        FIGURES_DIR / "centralidad_estaciones_por_intermediacion.png",
         scale=7000,
         base=80,
     )
@@ -211,8 +211,8 @@ def main() -> None:
         grafo,
         pos_geo,
         closeness,
-        "Ejercicio 1.b - Closeness",
-        FIGURES_DIR / "1b_closeness.png",
+        "Centralidad por cercania",
+        FIGURES_DIR / "centralidad_estaciones_por_cercania.png",
         scale=5000,
         base=80,
     )
@@ -220,8 +220,8 @@ def main() -> None:
         grafo,
         pos_geo,
         eigenvector,
-        "Ejercicio 1.b - Centralidad de autovector",
-        FIGURES_DIR / "1b_autovector.png",
+        "Centralidad de autovector",
+        FIGURES_DIR / "centralidad_estaciones_por_autovector.png",
         scale=4000,
         base=80,
     )
@@ -229,14 +229,14 @@ def main() -> None:
         grafo,
         pos_geo,
         eccentricity,
-        "Ejercicio 1.b - Excentricidad",
-        FIGURES_DIR / "1b_excentricidad.png",
+        "Periferia por excentricidad",
+        FIGURES_DIR / "centralidad_estaciones_por_excentricidad.png",
         scale=20,
         base=40,
     )
 
     summary = build_summary(grafo)
-    summary.to_csv(OUTPUT_DIR / "centralidad_estaciones.csv", index=False)
+    summary.to_csv(OUTPUT_DIR / "caracterizacion_estaciones_subte.csv", index=False)
     print(f"Nodos: {grafo.number_of_nodes()}")
     print(f"Aristas: {grafo.number_of_edges()}")
     print(f"Transbordos: {sum(1 for edge in grafo.edges() if grafo.edges[edge]['tipo'] == 'transbordo')}")
