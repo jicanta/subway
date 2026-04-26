@@ -1,0 +1,90 @@
+id,nombre,linea,x,y
+1,Plaza de Mayo,A,10,0
+2,Perú,A,10,1
+3,Piedras,A,10,2
+4,Lima,A,10,3
+5,Sáenz Peña,A,10,4
+6,Congreso,A,10,5
+7,Pasco,A,10,6
+8,Alberti,A,10,7
+9,Plaza Miserere,A,10,8
+10,Loria,A,10,9
+11,Castro Barros,A,10,10
+12,Río de Janeiro,A,10,11
+13,Acoyte,A,10,12
+14,Primera Junta,A,10,13
+15,Puan,A,10,14
+16,Carabobo,A,10,15
+17,San José de Flores,A,10,16
+18,San Pedrito,A,10,17
+19,Leandro N. Alem,B,12,0
+20,Florida,B,12,1
+21,Carlos Pellegrini,B,12,3
+22,Uruguay,B,12,4
+23,Callao,B,12,5
+24,Pasteur,B,12,6
+25,Pueyrredón,B,12,7
+26,Carlos Gardel,B,12,8
+27,Medrano,B,12,9
+28,Ángel Gallardo,B,12,10
+29,Malabia,B,12,11
+30,Dorrego,B,12,12
+31,Federico Lacroze,B,12,13
+32,Tronador,B,12,14
+33,De los Incas,B,12,15
+34,Juan Manuel de Rosas,B,12,16
+35,Retiro,C,15,0
+36,General San Martín,C,14,1
+37,Lavalle,C,13,2
+38,Diagonal Norte,C,12,3
+39,Avenida de Mayo,C,10,3
+40,Moreno,C,9,3
+41,Independencia,C,8,3
+42,San Juan,C,7,3
+43,Constitución,C,6,3
+44,Catedral,D,11,1
+45,9 de Julio,D,12,3
+46,Tribunales,D,13,4
+47,Callao,D,14,5
+48,Facultad de Medicina,D,15,6
+49,Pueyrredón,D,16,7
+50,Agüero,D,17,8
+51,Bulnes,D,18,9
+52,Scalabrini Ortiz,D,19,10
+53,Plaza Italia,D,20,11
+54,Palermo,D,21,12
+55,Ministro Carranza,D,22,13
+56,Olleros,D,23,14
+57,José Hernández,D,24,15
+58,Juramento,D,25,16
+59,Congreso de Tucumán,D,26,17
+60,Bolívar,E,11,1
+61,Belgrano,E,9,2
+62,Independencia,E,8,3
+63,San José,E,7,4
+64,Entre Ríos,E,6,5
+65,Pichincha,E,5,6
+66,Jujuy,E,4,7
+67,General Urquiza,E,3,8
+68,Boedo,E,2,9
+69,Avenida La Plata,E,1,10
+70,José María Moreno,E,0,11
+71,Emilio Mitre,E,-1,12
+72,Medalla Milagrosa,E,-2,13
+73,Varela,E,-3,14
+74,Plaza de los Virreyes,E,-4,15
+75,Retiro,E,15,0
+76,Catalinas,E,14,0
+77,Correo Central,E,13,0
+78,Facultad de Derecho,H,18,5
+79,Las Heras,H,17,6
+80,Santa Fe,H,16,7
+81,Córdoba,H,15,7
+82,Corrientes,H,12,7
+83,Once,H,10,8
+84,Venezuela,H,8,8
+85,Humberto 1º,H,4,7
+86,Inclán,H,3,6
+87,Caseros,H,2,5
+88,Parque Patricios,H,1,4
+89,Hospitales,H,0,3

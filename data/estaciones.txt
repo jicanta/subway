@@ -1,0 +1,90 @@
+id,nombre,linea
+1,Plaza de Mayo,A
+2,Perú,A
+3,Piedras,A
+4,Lima,A
+5,Sáenz Peña,A
+6,Congreso,A
+7,Pasco,A
+8,Alberti,A
+9,Plaza Miserere,A
+10,Loria,A
+11,Castro Barros,A
+12,Río de Janeiro,A
+13,Acoyte,A
+14,Primera Junta,A
+15,Puan,A
+16,Carabobo,A
+17,San José de Flores,A
+18,San Pedrito,A
+19,Leandro N. Alem,B
+20,Florida,B
+21,Carlos Pellegrini,B
+22,Uruguay,B
+23,Callao,B
+24,Pasteur,B
+25,Pueyrredón,B
+26,Carlos Gardel,B
+27,Medrano,B
+28,Ángel Gallardo,B
+29,Malabia,B
+30,Dorrego,B
+31,Federico Lacroze,B
+32,Tronador,B
+33,De los Incas,B
+34,Juan Manuel de Rosas,B
+35,Retiro,C
+36,General San Martín,C
+37,Lavalle,C
+38,Diagonal Norte,C
+39,Avenida de Mayo,C
+40,Moreno,C
+41,Independencia,C
+42,San Juan,C
+43,Constitución,C
+44,Catedral,D
+45,9 de Julio,D
+46,Tribunales,D
+47,Callao,D
+48,Facultad de Medicina,D
+49,Pueyrredón,D
+50,Agüero,D
+51,Bulnes,D
+52,Scalabrini Ortiz,D
+53,Plaza Italia,D
+54,Palermo,D
+55,Ministro Carranza,D
+56,Olleros,D
+57,José Hernández,D
+58,Juramento,D
+59,Congreso de Tucumán,D
+60,Bolívar,E
+61,Belgrano,E
+62,Independencia,E
+63,San José,E
+64,Entre Ríos,E
+65,Pichincha,E
+66,Jujuy,E
+67,General Urquiza,E
+68,Boedo,E
+69,Avenida La Plata,E
+70,José María Moreno,E
+71,Emilio Mitre,E
+72,Medalla Milagrosa,E
+73,Varela,E
+74,Plaza de los Virreyes,E
+75,Retiro,E
+76,Catalinas,E
+77,Correo Central,E
+78,Facultad de Derecho,H
+79,Las Heras,H
+80,Santa Fe,H
+81,Córdoba,H
+82,Corrientes,H
+83,Once,H
+84,Venezuela,H
+85,Humberto 1º,H
+86,Inclán,H
+87,Caseros,H
+88,Parque Patricios,H
+89,Hospitales,H
