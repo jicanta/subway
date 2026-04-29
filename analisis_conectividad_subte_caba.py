@@ -18,7 +18,10 @@ LINE_COLORS = {
     "C": "#1C4E80",
     "D": "#2F9E44",
     "E": "#7B2CBF",
+    "F": "#C2185B",
+    "G": "#FF8C00",
     "H": "#F08C00",
+    "I": "#F8A5C2",
 }
 TRANSFER_COLOR = "#495057"
 BACKGROUND = "#F8F9FA"
@@ -54,6 +57,329 @@ GROUP_LABEL_OFFSETS = {
     frozenset({"Independencia"}): (-0.9, 0.0, "right", "center"),
     frozenset({"Retiro"}): (0.75, 0.45, "left", "bottom"),
 }
+
+FUTURE_LINES = ("F", "G", "I")
+FUTURE_TRANSFER_TIME = 5
+APPROX_TRANSFER_TIME = 6
+FUTURE_SEGMENT_TIME = 2
+
+FUTURE_STATIONS = [
+    {
+        "id": 101,
+        "nombre": "Brandsen y Montes de Oca",
+        "linea": "F",
+        "etapa": "tramo principal",
+        "fuente": "GCBA 2025",
+        "confianza": "alta",
+        "pos_diag": (-3.8, 4.2),
+    },
+    {
+        "id": 102,
+        "nombre": "Constitución",
+        "linea": "F",
+        "etapa": "tramo principal",
+        "fuente": "GCBA 2025",
+        "confianza": "alta",
+        "pos_diag": (-3.1, 6.0),
+    },
+    {
+        "id": 103,
+        "nombre": "Cochabamba y Entre Ríos",
+        "linea": "F",
+        "etapa": "tramo principal",
+        "fuente": "GCBA 2025",
+        "confianza": "alta",
+        "pos_diag": (-4.2, 6.8),
+    },
+    {
+        "id": 104,
+        "nombre": "Chile y Avenida Entre Ríos",
+        "linea": "F",
+        "etapa": "tramo principal",
+        "fuente": "GCBA 2025",
+        "confianza": "alta",
+        "pos_diag": (-4.8, 8.4),
+    },
+    {
+        "id": 105,
+        "nombre": "Congreso",
+        "linea": "F",
+        "etapa": "tramo principal",
+        "fuente": "GCBA 2025",
+        "confianza": "alta",
+        "pos_diag": (-5.0, 10.0),
+    },
+    {
+        "id": 106,
+        "nombre": "Tucumán y Callao",
+        "linea": "F",
+        "etapa": "tramo principal",
+        "fuente": "GCBA 2025",
+        "confianza": "alta",
+        "pos_diag": (-5.2, 13.1),
+    },
+    {
+        "id": 107,
+        "nombre": "Santa Fe/Pizzurno",
+        "linea": "F",
+        "etapa": "tramo principal",
+        "fuente": "Completo con fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-5.6, 15.0),
+    },
+    {
+        "id": 108,
+        "nombre": "Recoleta",
+        "linea": "F",
+        "etapa": "tramo principal",
+        "fuente": "Completo con fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-6.2, 16.2),
+    },
+    {
+        "id": 109,
+        "nombre": "Pueyrredón/Hospital Rivadavia",
+        "linea": "F",
+        "etapa": "tramo principal",
+        "fuente": "Completo con fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-7.0, 17.2),
+    },
+    {
+        "id": 110,
+        "nombre": "Parque Las Heras/Coronel Díaz",
+        "linea": "F",
+        "etapa": "tramo principal",
+        "fuente": "Completo con fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-8.8, 18.6),
+    },
+    {
+        "id": 111,
+        "nombre": "Plaza Italia/Ecoparque",
+        "linea": "F",
+        "etapa": "tramo principal",
+        "fuente": "Completo con fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-10.8, 20.0),
+    },
+    {
+        "id": 201,
+        "nombre": "Retiro",
+        "linea": "G",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (0.0, 15.0),
+    },
+    {
+        "id": 202,
+        "nombre": "Cerrito",
+        "linea": "G",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-1.6, 14.8),
+    },
+    {
+        "id": 203,
+        "nombre": "Paraná",
+        "linea": "G",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-3.2, 14.6),
+    },
+    {
+        "id": 204,
+        "nombre": "Callao",
+        "linea": "G",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-4.8, 14.5),
+    },
+    {
+        "id": 205,
+        "nombre": "Pueyrredón",
+        "linea": "G",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-7.0, 15.5),
+    },
+    {
+        "id": 206,
+        "nombre": "Jean Jaurès",
+        "linea": "G",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-8.2, 14.6),
+    },
+    {
+        "id": 207,
+        "nombre": "Mario Bravo",
+        "linea": "G",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-9.2, 13.7),
+    },
+    {
+        "id": 208,
+        "nombre": "Gascón",
+        "linea": "G",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-10.0, 12.8),
+    },
+    {
+        "id": 209,
+        "nombre": "Estado de Israel",
+        "linea": "G",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-10.8, 11.8),
+    },
+    {
+        "id": 210,
+        "nombre": "Parque Centenario",
+        "linea": "G",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-10.4, 10.0),
+    },
+    {
+        "id": 211,
+        "nombre": "Cid Campeador",
+        "linea": "G",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-10.1, 8.3),
+    },
+    {
+        "id": 301,
+        "nombre": "Directorio",
+        "linea": "I",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-12.2, 0.0),
+    },
+    {
+        "id": 302,
+        "nombre": "Pedro Goyena",
+        "linea": "I",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-12.5, 3.2),
+    },
+    {
+        "id": 303,
+        "nombre": "Rivadavia",
+        "linea": "I",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-12.9, 8.8),
+    },
+    {
+        "id": 304,
+        "nombre": "Aranguren",
+        "linea": "I",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-12.0, 10.2),
+    },
+    {
+        "id": 305,
+        "nombre": "Díaz Vélez",
+        "linea": "I",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-10.6, 8.4),
+    },
+    {
+        "id": 306,
+        "nombre": "Warnes",
+        "linea": "I",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-10.4, 10.2),
+    },
+    {
+        "id": 307,
+        "nombre": "Corrientes",
+        "linea": "I",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-10.7, 12.0),
+    },
+    {
+        "id": 308,
+        "nombre": "Córdoba",
+        "linea": "I",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-10.7, 14.3),
+    },
+    {
+        "id": 309,
+        "nombre": "Costa Rica",
+        "linea": "I",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-10.7, 16.6),
+    },
+    {
+        "id": 310,
+        "nombre": "Serrano",
+        "linea": "I",
+        "etapa": "primera etapa",
+        "fuente": "Ley 670 y fuentes secundarias",
+        "confianza": "media",
+        "pos_diag": (-10.3, 19.0),
+    },
+]
+
+FUTURE_LINE_SEGMENTS = {
+    "F": [(101, 102), (102, 103), (103, 104), (104, 105), (105, 106), (106, 107), (107, 108), (108, 109), (109, 110), (110, 111)],
+    "G": [(201, 202), (202, 203), (203, 204), (204, 205), (205, 206), (206, 207), (207, 208), (208, 209), (209, 210), (210, 211)],
+    "I": [(301, 302), (302, 303), (303, 304), (304, 305), (305, 306), (306, 307), (307, 308), (308, 309), (309, 310)],
+}
+
+FUTURE_TRANSFERS = [
+    {"from": ("F", "Constitución"), "to": ("C", "Constitución"), "tiempo": FUTURE_TRANSFER_TIME, "confianza": "alta"},
+    {"from": ("F", "Cochabamba y Entre Ríos"), "to": ("E", "Entre Ríos"), "tiempo": FUTURE_TRANSFER_TIME, "confianza": "media"},
+    {"from": ("F", "Congreso"), "to": ("A", "Congreso"), "tiempo": FUTURE_TRANSFER_TIME, "confianza": "alta"},
+    {"from": ("F", "Tucumán y Callao"), "to": ("B", "Callao"), "tiempo": APPROX_TRANSFER_TIME, "confianza": "media"},
+    {"from": ("F", "Tucumán y Callao"), "to": ("D", "Callao"), "tiempo": FUTURE_TRANSFER_TIME, "confianza": "alta"},
+    {"from": ("F", "Pueyrredón/Hospital Rivadavia"), "to": ("H", "Santa Fe"), "tiempo": APPROX_TRANSFER_TIME, "confianza": "media"},
+    {"from": ("F", "Plaza Italia/Ecoparque"), "to": ("D", "Plaza Italia"), "tiempo": FUTURE_TRANSFER_TIME, "confianza": "media"},
+    {"from": ("G", "Retiro"), "to": ("C", "Retiro"), "tiempo": FUTURE_TRANSFER_TIME, "confianza": "alta"},
+    {"from": ("G", "Retiro"), "to": ("E", "Retiro"), "tiempo": FUTURE_TRANSFER_TIME, "confianza": "alta"},
+    {"from": ("G", "Pueyrredón"), "to": ("D", "Pueyrredón"), "tiempo": FUTURE_TRANSFER_TIME, "confianza": "alta"},
+    {"from": ("G", "Pueyrredón"), "to": ("H", "Santa Fe"), "tiempo": FUTURE_TRANSFER_TIME, "confianza": "alta"},
+    {"from": ("G", "Estado de Israel"), "to": ("B", "Ángel Gallardo"), "tiempo": APPROX_TRANSFER_TIME, "confianza": "media"},
+    {"from": ("I", "Directorio"), "to": ("E", "Emilio Mitre"), "tiempo": FUTURE_TRANSFER_TIME, "confianza": "media"},
+    {"from": ("I", "Rivadavia"), "to": ("A", "Primera Junta"), "tiempo": FUTURE_TRANSFER_TIME, "confianza": "alta"},
+    {"from": ("I", "Corrientes"), "to": ("B", "Ángel Gallardo"), "tiempo": APPROX_TRANSFER_TIME, "confianza": "media"},
+    {"from": ("I", "Serrano"), "to": ("D", "Scalabrini Ortiz"), "tiempo": APPROX_TRANSFER_TIME, "confianza": "media"},
+    {"from": ("G", "Callao"), "to": ("F", "Tucumán y Callao"), "tiempo": FUTURE_TRANSFER_TIME, "confianza": "media"},
+    {"from": ("G", "Cid Campeador"), "to": ("I", "Díaz Vélez"), "tiempo": FUTURE_TRANSFER_TIME, "confianza": "media"},
+]
 
 
 def load_data() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
@@ -93,6 +419,83 @@ def build_positions(
     return pos_geo, pos_diag
 
 
+def future_station_frame(selected_lines: tuple[str, ...] | None = None) -> pd.DataFrame:
+    frame = pd.DataFrame(FUTURE_STATIONS)
+    if selected_lines is None:
+        return frame.copy()
+    return frame[frame["linea"].isin(selected_lines)].copy()
+
+
+def future_transfer_frame(selected_lines: tuple[str, ...] | None = None) -> pd.DataFrame:
+    frame = pd.DataFrame(FUTURE_TRANSFERS)
+    if selected_lines is None:
+        return frame.copy()
+
+    def include_transfer(row: pd.Series) -> bool:
+        from_line = row["from"][0]
+        to_line = row["to"][0]
+        if from_line not in selected_lines:
+            return False
+        if to_line in FUTURE_LINES and to_line not in selected_lines:
+            return False
+        return True
+
+    return frame[frame.apply(include_transfer, axis=1)].copy()
+
+
+def node_lookup(grafo: nx.Graph) -> dict[tuple[str, str], int]:
+    return {(grafo.nodes[node]["linea"], grafo.nodes[node]["nombre"]): node for node in grafo.nodes()}
+
+
+def build_future_graph(base_graph: nx.Graph, selected_lines: tuple[str, ...]) -> nx.Graph:
+    grafo = base_graph.copy()
+    future_stations = future_station_frame(selected_lines)
+
+    for station in future_stations.to_dict("records"):
+        station_attrs = station.copy()
+        station_attrs.pop("pos_diag")
+        station_attrs["futuro"] = True
+        grafo.add_node(station["id"], **station_attrs)
+
+    for line in selected_lines:
+        for source, target in FUTURE_LINE_SEGMENTS[line]:
+            grafo.add_edge(
+                source,
+                target,
+                tipo=line,
+                tiempo=FUTURE_SEGMENT_TIME,
+                invtiempo=1 / FUTURE_SEGMENT_TIME,
+                futuro=True,
+                confianza="media" if line in {"G", "I"} else "alta",
+            )
+
+    lookup = node_lookup(grafo)
+    for transfer in future_transfer_frame(selected_lines).to_dict("records"):
+        source_key = transfer["from"]
+        target_key = transfer["to"]
+        if source_key not in lookup or target_key not in lookup:
+            continue
+        tiempo = int(transfer["tiempo"])
+        grafo.add_edge(
+            lookup[source_key],
+            lookup[target_key],
+            tipo="transbordo",
+            tiempo=tiempo,
+            invtiempo=1 / tiempo,
+            futuro=True,
+            confianza=transfer["confianza"],
+        )
+
+    return grafo
+
+
+def build_future_positions(base_pos_diag: dict[int, tuple[float, float]], selected_lines: tuple[str, ...]) -> dict[int, tuple[float, float]]:
+    pos = dict(base_pos_diag)
+    for station in future_station_frame(selected_lines).to_dict("records"):
+        pos[station["id"]] = station["pos_diag"]
+    return pos
+
+
 def validate_inputs(
     estaciones: pd.DataFrame,
     conexiones: pd.DataFrame,
@@ -125,6 +528,48 @@ def compute_metrics(grafo: nx.Graph) -> dict[str, dict[int, float]]:
         "autovector": nx.eigenvector_centrality(grafo, weight="invtiempo", max_iter=10000),
         "excentricidad": nx.eccentricity(grafo, weight="tiempo"),
     }
+
+
+def distance_metrics_on_nodes(grafo: nx.Graph, demand_nodes: list[int]) -> dict[str, float]:
+    total_distance = 0.0
+    total_inverse_distance = 0.0
+    pair_count = 0
+    diameter = 0.0
+    eccentricities = []
+
+    for index, source in enumerate(demand_nodes):
+        lengths = nx.single_source_dijkstra_path_length(grafo, source, weight="tiempo")
+        relevant_distances = [lengths[target] for target in demand_nodes if target != source]
+        eccentricities.append(max(relevant_distances))
+
+        for target in demand_nodes[index + 1 :]:
+            distance = float(lengths[target])
+            total_distance += distance
+            total_inverse_distance += 1 / distance
+            pair_count += 1
+            diameter = max(diameter, distance)
+
+    return {
+        "tiempo_medio": total_distance / pair_count,
+        "eficiencia": total_inverse_distance / pair_count,
+        "diametro": diameter,
+        "radio": min(eccentricities),
+    }
+
+
+def demand_betweenness(grafo: nx.Graph, demand_nodes: list[int]) -> dict[int, float]:
+    return nx.betweenness_centrality_subset(
+        grafo,
+        sources=demand_nodes,
+        targets=demand_nodes,
+        weight="tiempo",
+        normalized=False,
+    )
+
+
+def normalize_demand_betweenness(values: dict[int, float], demand_node_count: int) -> dict[int, float]:
+    scale = 2 / ((demand_node_count - 1) * (demand_node_count - 2))
+    return {node: value * scale for node, value in values.items()}
 
 
 def build_summary(grafo: nx.Graph, metrics: dict[str, dict[int, float]]) -> pd.DataFrame:
@@ -299,29 +744,37 @@ def line_letters_box(lines: list[str]) -> list[TextArea]:
 
 def label_box(grafo: nx.Graph, pos: dict[int, tuple[float, float]], nodes: set[int]) -> HPacker:
     ordered_nodes = sorted(nodes, key=lambda node: node_sort_key(grafo, pos, node))
-    names = [grafo.nodes[node]["nombre"] for node in ordered_nodes]
-    unique_names = list(dict.fromkeys(names))
+    grouped_names: dict[str, list[str]] = {}
+    for node in ordered_nodes:
+        name = grafo.nodes[node]["nombre"]
+        line = grafo.nodes[node]["linea"]
+        grouped_names.setdefault(name, [])
+        if line not in grouped_names[name]:
+            grouped_names[name].append(line)
+
+    unique_names = list(grouped_names)
     parts: list[TextArea] = []
 
     if len(unique_names) == 1:
-        lines = sorted({grafo.nodes[node]["linea"] for node in ordered_nodes})
+        lines = grouped_names[unique_names[0]]
         parts.append(TextArea(unique_names[0], textprops={"fontsize": 8, "color": "#212529", "fontweight": "bold"}))
         if len(lines) > 1:
             parts.extend(line_letters_box(lines))
         return HPacker(children=parts, align="center", pad=0, sep=0)
 
-    for index, node in enumerate(ordered_nodes):
-        parts.append(
-            TextArea(
-                grafo.nodes[node]["nombre"],
-                textprops={
-                    "fontsize": 8,
-                    "color": LINE_COLORS[grafo.nodes[node]["linea"]],
-                    "fontweight": "bold",
-                },
+    for index, name in enumerate(unique_names):
+        lines = grouped_names[name]
+        if len(lines) == 1:
+            parts.append(
+                TextArea(
+                    name,
+                    textprops={"fontsize": 8, "color": LINE_COLORS[lines[0]], "fontweight": "bold"},
+                )
             )
-        )
-        if index < len(ordered_nodes) - 1:
+        else:
+            parts.append(TextArea(name, textprops={"fontsize": 8, "color": "#212529", "fontweight": "bold"}))
+            parts.extend(line_letters_box(lines))
+        if index < len(unique_names) - 1:
             parts.append(TextArea(" / ", textprops={"fontsize": 8, "color": TRANSFER_COLOR}))
 
     return HPacker(children=parts, align="center", pad=0, sep=0)
@@ -452,9 +905,10 @@ def draw_network_overview(
 
     draw_labels(ax, grafo, pos, label_nodes, alpha=0.82)
 
+    present_lines = sorted({grafo.nodes[node]["linea"] for node in grafo.nodes()})
     legend_items = [
-        Line2D([0], [0], color=color, lw=3, label=f"Linea {linea}")
-        for linea, color in LINE_COLORS.items()
+        Line2D([0], [0], color=LINE_COLORS[linea], lw=3, label=f"Linea {linea}")
+        for linea in present_lines
     ]
     legend_items.append(Line2D([0], [0], color=TRANSFER_COLOR, lw=2.8, linestyle="--", label="Enlace de transbordo"))
     legend_items.append(
@@ -577,6 +1031,238 @@ def draw_line_summary(line_summary: pd.DataFrame, output: Path) -> None:
     plt.close(fig)
 
 
+def future_key_nodes(grafo: nx.Graph, summary: pd.DataFrame) -> set[int]:
+    future_summary = summary[summary["linea"].isin(FUTURE_LINES)]
+    terminals = {
+        node
+        for node in grafo.nodes()
+        if grafo.nodes[node].get("futuro") and same_line_degree(grafo, node, grafo.nodes[node]["linea"]) == 1
+    }
+    transfers = {node for node in grafo.nodes() if grafo.nodes[node].get("futuro") and is_transfer_station(grafo, node)}
+    central = set(future_summary.sort_values(["betweenness", "closeness"], ascending=[False, False]).head(8)["id"])
+    return terminals | transfers | central
+
+
+def draw_future_scenario_comparison(scenarios: pd.DataFrame, output: Path) -> None:
+    apply_plot_style()
+    compare = scenarios[scenarios["escenario"].isin(FUTURE_LINES)].copy()
+    colors = [LINE_COLORS[linea] for linea in compare["escenario"]]
+    metrics = [
+        ("mejora_tiempo_pct", "Reduccion del tiempo medio entre estaciones actuales", "% vs red actual"),
+        ("mejora_eficiencia_pct", "Ganancia de eficiencia global", "% vs red actual"),
+        ("caida_betweenness_hubs_pct", "Redistribucion de flujos en hubs actuales", "% de caida en betweenness"),
+    ]
+
+    fig, axes = plt.subplots(1, 3, figsize=(15, 4.8))
+    for ax, (column, title, ylabel) in zip(axes, metrics, strict=True):
+        bars = ax.bar(compare["escenario"], compare[column], color=colors, alpha=0.95)
+        ax.set_title(title, loc="left")
+        ax.set_ylabel(ylabel)
+        ax.grid(axis="y", color="#DEE2E6", linewidth=0.8)
+        ax.set_axisbelow(True)
+        for bar, value in zip(bars, compare[column], strict=True):
+            ax.text(bar.get_x() + bar.get_width() / 2, value + 0.05, f"{value:.2f}", ha="center", va="bottom", fontsize=9)
+
+    fig.tight_layout()
+    fig.savefig(output, dpi=220, bbox_inches="tight")
+    plt.close(fig)
+
+
+def draw_hub_relief(hub_relief: pd.DataFrame, output: Path, top_n: int = 6) -> None:
+    apply_plot_style()
+    selected = hub_relief.sort_values("betweenness_actual", ascending=False).head(top_n).iloc[::-1].copy()
+    labels = [f"{row.estacion} ({row.linea})" for row in selected.itertuples()]
+    width = 0.22
+    offsets = {"F": -width, "G": 0.0, "I": width}
+    y_positions = list(range(len(selected)))
+
+    fig, ax = plt.subplots(figsize=(12, 6))
+    for line in FUTURE_LINES:
+        values = selected[f"caida_{line}_pct"]
+        bars = ax.barh(
+            [y + offsets[line] for y in y_positions],
+            values,
+            height=0.2,
+            color=LINE_COLORS[line],
+            alpha=0.95,
+            label=f"Linea {line}",
+        )
+        for bar, value in zip(bars, values, strict=True):
+            if value >= 0:
+                text_x = value + 0.04
+                ha = "left"
+            else:
+                text_x = value - 0.04
+                ha = "right"
+            ax.text(text_x, bar.get_y() + bar.get_height() / 2, f"{value:.2f}", va="center", ha=ha, fontsize=8)
+
+    ax.set_yticks(y_positions)
+    ax.set_yticklabels(labels)
+    ax.set_xlabel("Caida porcentual de betweenness")
+    ax.set_title("Hubs actuales mas descargados por cada linea futura", loc="left")
+    ax.grid(axis="x", color="#DEE2E6", linewidth=0.8)
+    ax.set_axisbelow(True)
+    ax.axvline(0, color="#ADB5BD", linewidth=1)
+    ax.legend(frameon=False, ncol=3, loc="lower right")
+    fig.tight_layout()
+    fig.savefig(output, dpi=220, bbox_inches="tight")
+    plt.close(fig)
+
+
+def build_future_analysis(
+    base_graph: nx.Graph,
+    base_pos_diag: dict[int, tuple[float, float]],
+    base_summary: pd.DataFrame,
+) -> dict[str, object]:
+    scenario_definitions = {
+        "F": ("F",),
+        "G": ("G",),
+        "I": ("I",),
+        "F+G+I": FUTURE_LINES,
+    }
+    demand_nodes = sorted(base_graph.nodes())
+    base_distance_metrics = distance_metrics_on_nodes(base_graph, demand_nodes)
+    base_subset_betweenness = normalize_demand_betweenness(demand_betweenness(base_graph, demand_nodes), len(demand_nodes))
+    hub_ids = list(base_summary.sort_values("betweenness", ascending=False).head(8)["id"])
+    base_hub_total = sum(base_subset_betweenness[node] for node in hub_ids)
+
+    scenario_rows = []
+    hub_relief_rows = []
+    scenario_graphs: dict[str, nx.Graph] = {}
+    scenario_summaries: dict[str, pd.DataFrame] = {}
+    scenario_positions: dict[str, dict[int, tuple[float, float]]] = {}
+    scenario_subsets: dict[str, dict[int, float]] = {}
+
+    for label, lines in scenario_definitions.items():
+        graph = build_future_graph(base_graph, lines)
+        summary = build_summary(graph, compute_metrics(graph))
+        pos_diag = build_future_positions(base_pos_diag, lines)
+        distance_metrics = distance_metrics_on_nodes(graph, demand_nodes)
+        subset = normalize_demand_betweenness(demand_betweenness(graph, demand_nodes), len(demand_nodes))
+        future_nodes = [node for node in graph.nodes() if graph.nodes[node].get("futuro")]
+        hub_total = sum(subset[node] for node in hub_ids)
+
+        scenario_rows.append(
+            {
+                "escenario": label,
+                "estaciones_nuevas": len(future_nodes),
+                "transbordos_nuevos": sum(
+                    1
+                    for _, _, data in graph.edges(data=True)
+                    if data.get("futuro") and data["tipo"] == "transbordo"
+                ),
+                "tiempo_medio": distance_metrics["tiempo_medio"],
+                "mejora_tiempo_pct": (base_distance_metrics["tiempo_medio"] - distance_metrics["tiempo_medio"]) / base_distance_metrics["tiempo_medio"] * 100,
+                "eficiencia": distance_metrics["eficiencia"],
+                "mejora_eficiencia_pct": (distance_metrics["eficiencia"] - base_distance_metrics["eficiencia"]) / base_distance_metrics["eficiencia"] * 100,
+                "diametro": distance_metrics["diametro"],
+                "radio": distance_metrics["radio"],
+                "caida_betweenness_hubs_pct": (base_hub_total - hub_total) / base_hub_total * 100,
+                "betweenness_nuevas_estaciones": sum(subset[node] for node in future_nodes),
+            }
+        )
+
+        for hub_id in hub_ids:
+            current_value = base_subset_betweenness[hub_id]
+            scenario_value = subset[hub_id]
+            hub_relief_rows.append(
+                {
+                    "id": hub_id,
+                    "estacion": base_graph.nodes[hub_id]["nombre"],
+                    "linea": base_graph.nodes[hub_id]["linea"],
+                    "escenario": label,
+                    "betweenness_actual": current_value,
+                    "betweenness_escenario": scenario_value,
+                    "caida_pct": (current_value - scenario_value) / current_value * 100 if current_value else 0.0,
+                }
+            )
+
+        scenario_graphs[label] = graph
+        scenario_summaries[label] = summary
+        scenario_positions[label] = pos_diag
+        scenario_subsets[label] = subset
+
+    scenario_table = pd.DataFrame(scenario_rows)
+    scenario_table["escenario"] = pd.Categorical(scenario_table["escenario"], categories=list(scenario_definitions), ordered=True)
+    scenario_table = scenario_table.sort_values("escenario").reset_index(drop=True)
+
+    hub_relief = pd.DataFrame(hub_relief_rows)
+    hub_relief_compare = (
+        hub_relief[hub_relief["escenario"].isin(FUTURE_LINES)]
+        .pivot_table(index=["id", "estacion", "linea", "betweenness_actual"], columns="escenario", values="caida_pct")
+        .reset_index()
+        .rename(columns={line: f"caida_{line}_pct" for line in FUTURE_LINES})
+        .fillna(0.0)
+    )
+    hub_relief_compare.columns.name = None
+
+    future_summary = scenario_summaries["F+G+I"].copy()
+    future_summary["betweenness_demanda_actual"] = future_summary["id"].map(scenario_subsets["F+G+I"])
+    future_stations_summary = future_summary[future_summary["linea"].isin(FUTURE_LINES)].copy()
+
+    line_centrality_rows = []
+    for line in FUTURE_LINES:
+        line_data = future_stations_summary[future_stations_summary["linea"] == line].copy()
+        top_betweenness_station = line_data.sort_values(["betweenness_demanda_actual", "closeness"], ascending=[False, False]).iloc[0]["estacion"]
+        top_closeness_station = line_data.sort_values("closeness", ascending=False).iloc[0]["estacion"]
+        line_centrality_rows.append(
+            {
+                "linea": line,
+                "estaciones_modeladas": len(line_data),
+                "betweenness_demanda_actual_total": line_data["betweenness_demanda_actual"].sum(),
+                "betweenness_demanda_actual_media": line_data["betweenness_demanda_actual"].mean(),
+                "closeness_media": line_data["closeness"].mean(),
+                "top_estacion_betweenness": top_betweenness_station,
+                "top_estacion_closeness": top_closeness_station,
+            }
+        )
+    line_centrality = pd.DataFrame(line_centrality_rows).sort_values("betweenness_demanda_actual_total", ascending=False)
+
+    top_future_stations = future_stations_summary[
+        ["estacion", "linea", "betweenness_demanda_actual", "betweenness", "closeness", "score_central"]
+    ].sort_values(["betweenness_demanda_actual", "closeness"], ascending=[False, False]).head(12)
+
+    future_station_model = future_station_frame().drop(columns="pos_diag").copy()
+    future_transfer_model = future_transfer_frame().copy()
+    future_transfer_model[["linea_origen", "estacion_origen"]] = pd.DataFrame(future_transfer_model["from"].tolist(), index=future_transfer_model.index)
+    future_transfer_model[["linea_destino", "estacion_destino"]] = pd.DataFrame(future_transfer_model["to"].tolist(), index=future_transfer_model.index)
+    future_transfer_model = future_transfer_model.drop(columns=["from", "to"])
+
+    full_future_graph = scenario_graphs["F+G+I"]
+    full_future_pos = scenario_positions["F+G+I"]
+    draw_network_overview(
+        full_future_graph,
+        full_future_pos,
+        FIGURES_DIR / "red_subte_caba_futuro_esquematico.png",
+        title="Escenario futuro con las lineas F, G e I",
+        subtitle="La traza combina la red actual con F oficial 2025 completada con fuentes secundarias, y G/I segun la primera etapa de los planes historicos.",
+        label_nodes=future_key_nodes(full_future_graph, future_summary),
+    )
+    draw_future_scenario_comparison(scenario_table, FIGURES_DIR / "comparacion_lineas_futuras.png")
+    draw_hub_relief(hub_relief_compare, FIGURES_DIR / "alivio_hubs_futuros.png")
+
+    future_station_model.to_csv(OUTPUT_DIR / "modelo_estaciones_futuras.csv", index=False)
+    future_transfer_model.to_csv(OUTPUT_DIR / "modelo_transbordos_futuros.csv", index=False)
+    scenario_table.to_csv(OUTPUT_DIR / "escenarios_futuros_resumen.csv", index=False)
+    hub_relief_compare.to_csv(OUTPUT_DIR / "alivio_hubs_futuros.csv", index=False)
+    line_centrality.to_csv(OUTPUT_DIR / "centralidad_lineas_futuras.csv", index=False)
+    top_future_stations.to_csv(OUTPUT_DIR / "top_estaciones_futuras.csv", index=False)
+
+    compare_lines = scenario_table[scenario_table["escenario"].isin(FUTURE_LINES)].copy()
+    winner_distance = compare_lines.sort_values(["mejora_tiempo_pct", "mejora_eficiencia_pct"], ascending=[False, False]).iloc[0]["escenario"]
+    winner_redistribution = compare_lines.sort_values(["caida_betweenness_hubs_pct", "betweenness_nuevas_estaciones"], ascending=[False, False]).iloc[0]["escenario"]
+
+    return {
+        "scenario_table": scenario_table,
+        "hub_relief": hub_relief_compare,
+        "line_centrality": line_centrality,
+        "top_future_stations": top_future_stations,
+        "future_station_model": future_station_model,
+        "future_transfer_model": future_transfer_model,
+        "winners": {"distance": winner_distance, "redistribution": winner_redistribution},
+    }
+
+
 def build_key_tables(summary: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     columns = [
         "estacion",
@@ -617,6 +1303,7 @@ def generate_outputs() -> dict[str, object]:
     line_summary = build_line_summary(estaciones, grafo)
     central_table, peripheral_table = build_key_tables(summary)
     key_nodes = important_nodes(summary)
+    future_analysis = build_future_analysis(grafo, pos_diag, summary)
 
     draw_network_overview(
         grafo,
@@ -692,6 +1379,7 @@ def generate_outputs() -> dict[str, object]:
         "line_summary": line_summary,
         "top_central": central_table,
         "top_peripheral": peripheral_table,
+        "future": future_analysis,
     }
 
 
@@ -707,6 +1395,7 @@ def main() -> None:
     results = generate_outputs()
     checks = results["checks"]
     stats = results["stats"]
+    future = results["future"]
     print("Chequeos de consistencia:")
     for key, value in checks.items():
         print(f"- {key}: {value}")
@@ -716,6 +1405,8 @@ def main() -> None:
     print(f"Radio de la red: {stats['radio']} min")
     print(f"Diametro de la red: {stats['diametro']} min")
     print_rankings(results["top_central"], results["top_peripheral"])
+    print("\nGanadora por reduccion de distancias entre estaciones actuales:", future["winners"]["distance"])
+    print("Ganadora por redistribucion de flujos en hubs actuales:", future["winners"]["redistribution"])
 
 
 if __name__ == "__main__":

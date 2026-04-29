@@ -1,0 +1,19 @@
+tiempo,confianza,linea_origen,estacion_origen,linea_destino,estacion_destino
+5,alta,F,Constitución,C,Constitución
+5,media,F,Cochabamba y Entre Ríos,E,Entre Ríos
+5,alta,F,Congreso,A,Congreso
+6,media,F,Tucumán y Callao,B,Callao
+5,alta,F,Tucumán y Callao,D,Callao
+6,media,F,Pueyrredón/Hospital Rivadavia,H,Santa Fe
+5,media,F,Plaza Italia/Ecoparque,D,Plaza Italia
+5,alta,G,Retiro,C,Retiro
+5,alta,G,Retiro,E,Retiro
+5,alta,G,Pueyrredón,D,Pueyrredón
+5,alta,G,Pueyrredón,H,Santa Fe
+6,media,G,Estado de Israel,B,Ángel Gallardo
+5,media,I,Directorio,E,Emilio Mitre
+5,alta,I,Rivadavia,A,Primera Junta
+6,media,I,Corrientes,B,Ángel Gallardo
+6,media,I,Serrano,D,Scalabrini Ortiz
+5,media,G,Callao,F,Tucumán y Callao
+5,media,G,Cid Campeador,I,Díaz Vélez

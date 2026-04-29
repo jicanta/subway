@@ -1,0 +1,4 @@
+linea,estaciones_modeladas,betweenness_demanda_actual_total,betweenness_demanda_actual_media,closeness_media,top_estacion_betweenness,top_estacion_closeness
+I,10,0.6248693834900731,0.062486938349007315,0.04470741100215347,Rivadavia,Corrientes
+F,11,0.42358934169279006,0.038508121972071825,0.053550780096814604,Tucumán y Callao,Tucumán y Callao
+G,11,0.13793103448275862,0.012539184952978056,0.05173840581985471,Pueyrredón,Pueyrredón

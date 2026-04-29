@@ -1,0 +1,33 @@
+id,nombre,linea,etapa,fuente,confianza
+101,Brandsen y Montes de Oca,F,tramo principal,GCBA 2025,alta
+102,Constitución,F,tramo principal,GCBA 2025,alta
+103,Cochabamba y Entre Ríos,F,tramo principal,GCBA 2025,alta
+104,Chile y Avenida Entre Ríos,F,tramo principal,GCBA 2025,alta
+105,Congreso,F,tramo principal,GCBA 2025,alta
+106,Tucumán y Callao,F,tramo principal,GCBA 2025,alta
+107,Santa Fe/Pizzurno,F,tramo principal,Completo con fuentes secundarias,media
+108,Recoleta,F,tramo principal,Completo con fuentes secundarias,media
+109,Pueyrredón/Hospital Rivadavia,F,tramo principal,Completo con fuentes secundarias,media
+110,Parque Las Heras/Coronel Díaz,F,tramo principal,Completo con fuentes secundarias,media
+111,Plaza Italia/Ecoparque,F,tramo principal,Completo con fuentes secundarias,media
+201,Retiro,G,primera etapa,Ley 670 y fuentes secundarias,media
+202,Cerrito,G,primera etapa,Ley 670 y fuentes secundarias,media
+203,Paraná,G,primera etapa,Ley 670 y fuentes secundarias,media
+204,Callao,G,primera etapa,Ley 670 y fuentes secundarias,media
+205,Pueyrredón,G,primera etapa,Ley 670 y fuentes secundarias,media
+206,Jean Jaurès,G,primera etapa,Ley 670 y fuentes secundarias,media
+207,Mario Bravo,G,primera etapa,Ley 670 y fuentes secundarias,media
+208,Gascón,G,primera etapa,Ley 670 y fuentes secundarias,media
+209,Estado de Israel,G,primera etapa,Ley 670 y fuentes secundarias,media
+210,Parque Centenario,G,primera etapa,Ley 670 y fuentes secundarias,media
+211,Cid Campeador,G,primera etapa,Ley 670 y fuentes secundarias,media
+301,Directorio,I,primera etapa,Ley 670 y fuentes secundarias,media
+302,Pedro Goyena,I,primera etapa,Ley 670 y fuentes secundarias,media
+303,Rivadavia,I,primera etapa,Ley 670 y fuentes secundarias,media
+304,Aranguren,I,primera etapa,Ley 670 y fuentes secundarias,media
+305,Díaz Vélez,I,primera etapa,Ley 670 y fuentes secundarias,media
+306,Warnes,I,primera etapa,Ley 670 y fuentes secundarias,media
+307,Corrientes,I,primera etapa,Ley 670 y fuentes secundarias,media
+308,Córdoba,I,primera etapa,Ley 670 y fuentes secundarias,media
+309,Costa Rica,I,primera etapa,Ley 670 y fuentes secundarias,media
+310,Serrano,I,primera etapa,Ley 670 y fuentes secundarias,media
