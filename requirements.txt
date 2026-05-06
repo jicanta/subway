@@ -1,6 +1,7 @@
 pandas
 networkx
 matplotlib
+shapely
 nbformat
 nbclient
 ipykernel
