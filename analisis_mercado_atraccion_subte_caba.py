@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
 import pandas as pd
+from matplotlib.ticker import FuncFormatter
 from shapely.geometry import Point, shape
 from shapely.ops import transform
 
@@ -410,6 +411,8 @@ def draw_scatter_comparison(
     apply_plot_style()
     plotted = frame.dropna(subset=[x_column, y_column]).copy()
     fig, ax = plt.subplots(figsize=(8.6, 6.2))
+    pearson = plotted[x_column].corr(plotted[y_column], method="pearson")
+    spearman = spearman_correlation(plotted[x_column], plotted[y_column])
 
     colors = [LINE_COLORS[linea] for linea in plotted["linea"]]
     ax.scatter(plotted[x_column], plotted[y_column], c=colors, alpha=0.82, s=55, edgecolors="white", linewidths=0.7)
@@ -418,6 +421,21 @@ def draw_scatter_comparison(
     ax.set_ylabel(y_label)
     ax.grid(color="#DEE2E6", linewidth=0.8)
     ax.set_axisbelow(True)
+    ax.ticklabel_format(style="plain")
+    formatter = FuncFormatter(lambda value, _: f"{value:,.0f}".replace(",", "."))
+    ax.xaxis.set_major_formatter(formatter)
+    ax.yaxis.set_major_formatter(formatter)
+
+    ax.text(
+        0.02,
+        0.98,
+        f"Pearson: {pearson:.2f}\nSpearman: {spearman:.2f}",
+        transform=ax.transAxes,
+        va="top",
+        ha="left",
+        fontsize=9,
+        bbox={"boxstyle": "round,pad=0.35", "facecolor": "white", "edgecolor": "#CED4DA", "alpha": 0.92},
+    )
 
     top_labels = plotted.nlargest(6, y_column)
     for row in top_labels.itertuples():
