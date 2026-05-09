@@ -39,6 +39,24 @@ Con este dataset 2024:
 - el empalme entre red y molinetes resulta completo para las `89` estaciones de la red base.
 - el unico registro presente en molinetes pero ausente en la red base es `Echeverria` de la linea `B`.
 
+### OpenStreetMap para el ejercicio 3
+
+El ejercicio 3 si utiliza datos de `OpenStreetMap`, tal como pide la consigna. La descarga se hace via `Overpass API` y queda implementada en `analisis_mercado_atraccion_subte_caba.py`.
+
+La construccion de `atraccion_total` usa POI descargados desde OSM con estas familias de tags:
+
+- educacion: tags `amenity` como `school`, `college`, `university`, `kindergarten` y `library`
+- salud: tags `amenity` como `hospital`, `clinic`, `doctors`, `dentist` y `pharmacy`
+- comercio: tags `shop` como `supermarket`, `convenience`, `bakery`, `department_store`, `mall`, `clothes`, `books` y `shoes`
+
+Los resultados descargados se cachean localmente en:
+
+- `external_data/osm_educacion.json`
+- `external_data/osm_salud.json`
+- `external_data/osm_comercio.json`
+
+En otras palabras, el ejercicio 3 no usa una proxy ad hoc inventada manualmente: usa POI efectivamente descargados desde OpenStreetMap y luego agregados por estacion dentro de un radio de `400 m`.
+
 ## Nota metodologica importante sobre diciembre 2024
 
 Los archivos de diciembre se llaman:
