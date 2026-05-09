@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import csv
 import json
 import math
 import re
 import subprocess
 import unicodedata
+from io import StringIO
 from pathlib import Path
 from urllib.request import Request, urlopen
 
@@ -32,6 +34,7 @@ BASE_DIR = Path(__file__).resolve().parent
 EXTERNAL_DATA_DIR = BASE_DIR / "external_data"
 FIGURES_DIR = BASE_DIR / "figures"
 OUTPUT_DIR = BASE_DIR / "outputs"
+LOCAL_TURNSTILE_DIR = BASE_DIR / "data" / "molinetes-2024"
 
 TURNSTILE_URL = "https://cdn.buenosaires.gob.ar/datosabiertos/datasets/sbase/subte-viajes-molinetes/BaseUnificadaEstaciones.csv"
 CENSUS_URL = "https://cdn.buenosaires.gob.ar/datosabiertos/datasets/direccion-general-de-estadisticas-y-censos/informacion-censal-por-radio/caba_radios_censales.geojson"
@@ -45,13 +48,21 @@ EARTH_RADIUS_M = 6_371_000
 LATITUDE_REFERENCE_RAD = math.radians(-34.6037)
 
 TURNSTILE_NAME_ALIASES = {
+    ("B", "callao b"): "Callao",
     ("A", "flores"): "San Jose de Flores",
+    ("B", "pueyrredon b"): "Pueyrredon",
     ("B", "los incas"): "De los Incas",
     ("B", "rosas"): "Juan Manuel de Rosas",
     ("C", "mariano moreno"): "Moreno",
+    ("C", "independencia c"): "Independencia",
+    ("C", "retiro c"): "Retiro",
+    ("D", "callao d"): "Callao",
     ("D", "callao"): "Callao",
+    ("D", "pueyrredon d"): "Pueyrredon",
     ("D", "pueyrredon"): "Pueyrredon",
     ("E", "general belgrano"): "Belgrano",
+    ("E", "independencia e"): "Independencia",
+    ("E", "independencia h"): "Independencia",
     ("E", "independencia"): "Independencia",
     ("E", "pza de los virreyes"): "Plaza de los Virreyes",
     ("E", "retiro e"): "Retiro",
@@ -97,11 +108,15 @@ def normalize_text(value: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
-def normalize_station_key(linea: str, nombre: str) -> tuple[str, str]:
+def canonical_station_name(linea: str, nombre: str) -> str:
     line_key = str(linea).strip()
     normalized_name = normalize_text(nombre)
-    alias = TURNSTILE_NAME_ALIASES.get((line_key, normalized_name), nombre)
-    return line_key, normalize_text(alias)
+    return TURNSTILE_NAME_ALIASES.get((line_key, normalized_name), str(nombre).strip())
+
+
+def normalize_station_key(linea: str, nombre: str) -> tuple[str, str]:
+    line_key = str(linea).strip()
+    return line_key, normalize_text(canonical_station_name(line_key, nombre))
 
 
 def download_if_missing(url: str, destination: Path) -> Path:
@@ -161,31 +176,102 @@ def load_station_context() -> dict[str, object]:
     }
 
 
+def clean_string_columns(frame: pd.DataFrame) -> pd.DataFrame:
+    object_columns = frame.select_dtypes(include="object").columns
+    frame[object_columns] = frame[object_columns].apply(lambda column: column.str.strip().str.strip('"'))
+    return frame
+
+
+def build_turnstile_period_label(dates: pd.Series) -> str:
+    valid_dates = pd.to_datetime(dates, errors="coerce").dropna()
+    if valid_dates.empty:
+        return "sin datos validos"
+    return f"{valid_dates.min():%Y-%m-%d} a {valid_dates.max():%Y-%m-%d}"
+
+
+def load_local_turnstiles(path: Path) -> pd.DataFrame:
+    csv_files = sorted(path.glob("*.csv"))
+    if not csv_files:
+        raise FileNotFoundError(f"No se encontraron CSV de molinetes en {path}.")
+
+    frames = []
+    for csv_path in csv_files:
+        text = None
+        last_error = None
+        for encoding in ("utf-8-sig", "cp1252", "latin-1"):
+            try:
+                text = csv_path.read_text(encoding=encoding)
+                break
+            except UnicodeDecodeError as exc:
+                last_error = exc
+        if text is None:
+            raise last_error  # pragma: no cover - solo se dispara con archivos corruptos
+
+        frame = pd.read_csv(
+            StringIO(text),
+            sep=";",
+            engine="python",
+            quoting=csv.QUOTE_NONE,
+            dtype=str,
+        )
+        frame.columns = [column.strip().strip('"').lower() for column in frame.columns]
+        frames.append(clean_string_columns(frame))
+    return pd.concat(frames, ignore_index=True)
+
+
 def load_turnstiles(pre_lockdown_only: bool = True) -> pd.DataFrame:
-    path = download_if_missing(TURNSTILE_URL, EXTERNAL_DATA_DIR / "BaseUnificadaEstaciones.csv")
-    frame = pd.read_csv(path, encoding="utf-8-sig")
-    frame.columns = [column.strip().lower() for column in frame.columns]
+    local_csv_files = sorted(LOCAL_TURNSTILE_DIR.glob("*.csv"))
+    using_local_dataset = bool(local_csv_files)
+
+    if using_local_dataset:
+        frame = load_local_turnstiles(LOCAL_TURNSTILE_DIR)
+        source_label = f"{LOCAL_TURNSTILE_DIR.relative_to(BASE_DIR)} ({len(local_csv_files)} archivos)"
+        value_column = "pax_total"
+        frame["linea"] = frame["linea"].astype(str).str.replace(r"^Linea", "", regex=True).str.strip()
+    else:
+        path = download_if_missing(TURNSTILE_URL, EXTERNAL_DATA_DIR / "BaseUnificadaEstaciones.csv")
+        frame = pd.read_csv(path, encoding="utf-8-sig")
+        frame.columns = [column.strip().lower() for column in frame.columns]
+        source_label = TURNSTILE_URL
+        value_column = "cantidad"
+
     frame["fecha"] = pd.to_datetime(frame["fecha"], dayfirst=True, errors="coerce")
     frame["linea"] = frame["linea"].astype(str).str.strip()
     frame["estacion"] = frame["estacion"].astype(str).str.strip()
-    frame["cantidad"] = pd.to_numeric(frame["cantidad"], errors="coerce").fillna(0)
+    frame["cantidad"] = pd.to_numeric(frame[value_column], errors="coerce").fillna(0)
 
-    if pre_lockdown_only:
+    if pre_lockdown_only and not using_local_dataset:
         frame = frame[frame["fecha"] <= PRE_LOCKDOWN_END].copy()
 
+    valid_dates = frame["fecha"].dropna().drop_duplicates().sort_values()
+    observed_days = int(valid_dates.nunique())
+    missing_dates_count = 0
+    if not valid_dates.empty:
+        missing_dates_count = int(
+            len(pd.date_range(valid_dates.min(), valid_dates.max(), freq="D").difference(pd.DatetimeIndex(valid_dates)))
+        )
+
     daily = frame.groupby(["fecha", "linea", "estacion"], as_index=False)["cantidad"].sum()
+    daily["estacion_canonica"] = daily.apply(
+        lambda row: canonical_station_name(row["linea"], row["estacion"]), axis=1
+    )
+    daily[["linea", "nombre_norm"]] = daily.apply(
+        lambda row: pd.Series(normalize_station_key(row["linea"], row["estacion_canonica"])), axis=1
+    )
     station_daily = (
-        daily.groupby(["linea", "estacion"], as_index=False)
+        daily.groupby(["linea", "estacion_canonica", "nombre_norm"], as_index=False)
         .agg(
             pasajeros_diarios_promedio=("cantidad", "mean"),
             pasajeros_totales_periodo=("cantidad", "sum"),
             dias_observados=("fecha", "nunique"),
         )
+        .rename(columns={"estacion_canonica": "estacion"})
         .sort_values(["linea", "estacion"])
     )
-    station_daily[["linea", "nombre_norm"]] = station_daily.apply(
-        lambda row: pd.Series(normalize_station_key(row["linea"], row["estacion"])), axis=1
-    )
+    station_daily.attrs["period_label"] = build_turnstile_period_label(frame["fecha"])
+    station_daily.attrs["source_label"] = source_label
+    station_daily.attrs["observed_days"] = observed_days
+    station_daily.attrs["missing_dates_count"] = missing_dates_count
     return station_daily
 
 
@@ -520,6 +606,10 @@ def generate_outputs(
     stations = station_context["stations"]
 
     turnstiles = load_turnstiles(pre_lockdown_only=True)
+    turnstile_period_label = turnstiles.attrs.get("period_label", "periodo disponible")
+    turnstile_source_label = turnstiles.attrs.get("source_label", TURNSTILE_URL)
+    turnstile_observed_days = int(turnstiles.attrs.get("observed_days", 0))
+    turnstile_missing_dates_count = int(turnstiles.attrs.get("missing_dates_count", 0))
     diagnostics = build_turnstile_diagnostics(stations, turnstiles)
     radios = load_census_radios()
     demand = estimate_station_demand(stations, radios, radius_m=demand_radius_m)
@@ -600,7 +690,7 @@ def generate_outputs(
         y_column="pasajeros_diarios_promedio",
         output=FIGURES_DIR / "demanda_vs_molinetes.png",
         title="Demanda potencial vs usuarios observados",
-        subtitle="Promedio diario por estacion usando el tramo previo al ASPO de 2020.",
+        subtitle=f"Promedio diario por estacion usando datos de {turnstile_period_label}.",
         x_label="Demanda potencial",
         y_label="Pasajeros diarios promedio",
     )
@@ -616,12 +706,18 @@ def generate_outputs(
     )
 
     matched_for_ridership = station_metrics.dropna(subset=["pasajeros_diarios_promedio"]).copy()
+    full_coverage_station_count = int((matched_for_ridership["dias_observados"] == turnstile_observed_days).sum())
+    partial_coverage_station_count = int((matched_for_ridership["dias_observados"] < turnstile_observed_days).sum())
     diagnostics_summary = pd.DataFrame(
         [
             {"indicador": "estaciones_red", "valor": int(len(stations))},
             {"indicador": "estaciones_con_molinetes_matcheadas", "valor": int(len(matched_for_ridership))},
             {"indicador": "estaciones_red_sin_molinetes", "valor": int(len(diagnostics["stations_without_turnstiles"]))},
             {"indicador": "estaciones_molinetes_sin_red", "valor": int(len(diagnostics["turnstiles_without_network_station"]))},
+            {"indicador": "dias_molinetes_observados", "valor": turnstile_observed_days},
+            {"indicador": "fechas_molinetes_faltantes_en_periodo", "valor": turnstile_missing_dates_count},
+            {"indicador": "estaciones_con_cobertura_total", "valor": full_coverage_station_count},
+            {"indicador": "estaciones_con_cobertura_parcial", "valor": partial_coverage_station_count},
             {"indicador": "radios_censales", "valor": int(len(radios))},
             {"indicador": "poi_educacion_descargados", "valor": int(len(poi_frames["educacion"]))},
             {"indicador": "poi_salud_descargados", "valor": int(len(poi_frames["salud"]))},
@@ -659,7 +755,8 @@ def generate_outputs(
                 {"parametro": "radio_demanda_m", "valor": demand_radius_m},
                 {"parametro": "radio_poi_m", "valor": poi_radius_m},
                 {"parametro": "d0_minutos", "valor": decay_minutes},
-                {"parametro": "molinetes_periodo", "valor": "2020-01-01 a 2020-03-19"},
+                {"parametro": "molinetes_periodo", "valor": turnstile_period_label},
+                {"parametro": "molinetes_fuente", "valor": turnstile_source_label},
             ]
         ),
         "diagnostics": diagnostics_summary,

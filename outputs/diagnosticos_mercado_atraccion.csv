@@ -1,8 +1,12 @@
 indicador,valor
 estaciones_red,89
-estaciones_con_molinetes_matcheadas,88
-estaciones_red_sin_molinetes,1
+estaciones_con_molinetes_matcheadas,89
+estaciones_red_sin_molinetes,0
 estaciones_molinetes_sin_red,1
+dias_molinetes_observados,364
+fechas_molinetes_faltantes_en_periodo,2
+estaciones_con_cobertura_total,66
+estaciones_con_cobertura_parcial,23
 radios_censales,3554
 poi_educacion_descargados,3039
 poi_salud_descargados,1456
