@@ -90,7 +90,7 @@ La version actual del analisis deja documentados estos diagnosticos:
 - periodo observado: `2024-01-01` a `2024-12-31`
 - fechas efectivamente presentes en la red: `364`
 - fechas faltantes dentro del periodo: `2`
-- estaciones con cobertura completa: `66`
+- estaciones con cobertura completa: `67`
 - estaciones con cobertura parcial: `23`
 
 La cobertura parcial se concentra sobre todo en algunas estaciones de las lineas `D` y `B`, por lo que los niveles de validacion en esas estaciones deben compararse con esa salvedad en mente.
