@@ -33,6 +33,7 @@ id,nombre,linea,x,y
 32,Tronador,B,12,14
 33,De los Incas,B,12,15
 34,Juan Manuel de Rosas,B,12,16
+90,Echeverria,B,12,15.5
 35,Retiro,C,15,0
 36,General San Martín,C,14,1
 37,Lavalle,C,13,2

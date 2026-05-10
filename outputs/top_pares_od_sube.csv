@@ -1,26 +1,26 @@
 origen,linea_origen,destino,linea_destino,viajes_estimados,probabilidad
-Retiro,C,Constitución,C,10101,0.01070615468755962
-Constitución,C,Retiro,C,5561,0.005894161589695975
-Constitución,C,Retiro,E,5549,0.00588144266520823
-Congreso de Tucumán,D,Catedral,D,3377,0.003579317332926328
-Lavalle,C,Constitución,C,3373,0.0035750776914304128
-Catedral,D,Congreso de Tucumán,D,3112,0.003298441083821952
-Florida,B,Federico Lacroze,B,2614,0.0027706057175805212
-Leandro N. Alem,B,Federico Lacroze,B,2605,0.0027610665242147124
-Plaza de Mayo,A,Once,H,2427,0.00257240247764649
-Constitución,C,Lavalle,C,2415,0.002559683553158745
-Agüero,D,Catedral,D,2398,0.0025416650768011056
-Leandro N. Alem,B,Juan Manuel de Rosas,B,2337,0.0024770105439884003
-Facultad de Medicina,D,Constitución,C,2304,0.0024420335016471007
-Catedral,D,Juramento,D,2239,0.0023731393273384803
-San Pedrito,A,Plaza de Mayo,A,2213,0.002345581657615032
-Callao,B,Federico Lacroze,B,2105,0.002231111337225324
-Uruguay,B,Federico Lacroze,B,2048,0.002170696445908534
-San Pedrito,A,Catedral,D,2048,0.002170696445908534
-Florida,B,Juan Manuel de Rosas,B,2041,0.0021632770732906825
-Constitución,C,General San Martín,C,2014,0.0021346594931932555
-Agüero,D,Constitución,C,2013,0.0021335995828192767
-Juan Manuel de Rosas,B,Florida,B,1985,0.002103922092347871
-Federico Lacroze,B,Florida,B,1941,0.002057286035892805
-Constitución,C,Facultad de Medicina,D,1917,0.0020318481869173143
-Congreso de Tucumán,D,Callao,D,1908,0.0020223089935515054
+Retiro,C,Constitución,C,10101,0.01060439041290038
+Constitución,C,Retiro,C,5561,0.0058381363316640945
+Constitución,C,Retiro,E,5549,0.00582553830325554
+Congreso de Tucumán,D,Catedral,D,3377,0.0035452951613072553
+Lavalle,C,Constitución,C,3373,0.003541095818504404
+Catedral,D,Congreso de Tucumán,D,3112,0.0032670887006183533
+Florida,B,Federico Lacroze,B,2614,0.0027442705216633597
+Leandro N. Alem,B,Federico Lacroze,B,2605,0.002734822000356944
+Plaza de Mayo,A,Once,H,2427,0.002547951245630059
+Constitución,C,Lavalle,C,2415,0.002535353217221505
+Agüero,D,Catedral,D,2398,0.0025175060103093867
+Leandro N. Alem,B,Juan Manuel de Rosas,B,2337,0.0024534660325659036
+Facultad de Medicina,D,Constitución,C,2304,0.00241882145444238
+Catedral,D,Juramento,D,2239,0.0023505821338960452
+San Pedrito,A,Plaza de Mayo,A,2213,0.0023232864056775115
+Callao,B,Federico Lacroze,B,2105,0.002209904150000525
+Uruguay,B,Federico Lacroze,B,2048,0.002150063515059893
+San Pedrito,A,Catedral,D,2048,0.002150063515059893
+Florida,B,Juan Manuel de Rosas,B,2041,0.0021427146651549034
+Constitución,C,General San Martín,C,2014,0.0021143691012356566
+Agüero,D,Constitución,C,2013,0.0021133192655349436
+Juan Manuel de Rosas,B,Florida,B,1985,0.0020839238659149844
+Federico Lacroze,B,Florida,B,1941,0.0020377310950836195
+Constitución,C,Facultad de Medicina,D,1917,0.0020125350382665112
+Congreso de Tucumán,D,Callao,D,1908,0.0020030865169600957

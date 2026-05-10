@@ -38,8 +38,8 @@ Para el analisis de mercado y atraccion, el codigo prioriza el dataset local ubi
 Con este dataset 2024:
 
 - `Plaza de Mayo` de la linea `A` queda correctamente representada en molinetes.
-- el empalme entre red y molinetes resulta completo para las `89` estaciones de la red base.
-- el unico registro presente en molinetes pero ausente en la red base es `Echeverria` de la linea `B`.
+- el empalme entre red y molinetes resulta completo para las `90` estaciones de la red base.
+- ya no quedan estaciones presentes en molinetes y ausentes en la red base.
 
 ### OpenStreetMap para el ejercicio 3
 
