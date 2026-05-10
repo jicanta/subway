@@ -9,6 +9,8 @@ El trabajo esta organizado en tres bloques principales:
 - `analisis_conectividad_subte_caba.ipynb` y `analisis_conectividad_subte_caba.py`: construccion de la red base, calculo de metricas de centralidad y evaluacion de escenarios futuros con las lineas `F`, `G` e `I`.
 - `analisis_mercado_y_atraccion_subte_caba.ipynb`: desarrollo narrativo de los ejercicios 2 y 3 del TP, con tablas y figuras listas para discutir resultados.
 - `analisis_mercado_atraccion_subte_caba.py`: backend analitico del notebook de mercado y atraccion. Genera las salidas tabulares y graficas en `outputs/` y `figures/`.
+- `analisis_viajes_sube_subte_caba.ipynb`: desarrollo narrativo del ejercicio 4, basado en trayectorias SUBE publicadas por el BID.
+- `analisis_viajes_sube_subte_caba.py`: backend analitico del ejercicio 4. Construye la matriz `P''`, recalcula betweenness y compara contra `P` y `P'`.
 
 ## Estructura del repositorio
 
@@ -56,6 +58,16 @@ Los resultados descargados se cachean localmente en:
 - `external_data/osm_comercio.json`
 
 En otras palabras, el ejercicio 3 no usa una proxy ad hoc inventada manualmente: usa POI efectivamente descargados desde OpenStreetMap y luego agregados por estacion dentro de un radio de `400 m`.
+
+### SUBE para el ejercicio 4
+
+El ejercicio 4 usa la publicacion del BID disponible en `EL-BID/Matriz-Origen-Destino-Transporte-Publico`. En esta implementacion se trabaja con:
+
+- `resultados/etapas.csv`
+- `data/paradas.csv`
+- `data/lineas_ramales.csv`
+
+La matriz `P''` se construye a partir de etapas `SUB` con origen y destino completos, reexpresadas sobre la red local de estaciones del subte. Esto permite comparar un flujo empirico observado contra los modelos previos basados en demanda y atraccion.
 
 ## Nota metodologica importante sobre diciembre 2024
 
@@ -127,6 +139,7 @@ Los notebooks principales son:
 
 - `analisis_conectividad_subte_caba.ipynb`
 - `analisis_mercado_y_atraccion_subte_caba.ipynb`
+- `analisis_viajes_sube_subte_caba.ipynb`
 
 ## Resultados actuales relevantes
 
@@ -135,6 +148,7 @@ Con la configuracion actual del repositorio:
 - la correlacion entre demanda potencial y molinetes es baja, lo que refuerza que la poblacion residencial cercana no alcanza para explicar por si sola los flujos observados.
 - la correlacion por atraccion urbana mejora en rangos, pero sigue siendo insuficiente para capturar completamente transbordos, cabeceras y centralidades funcionales.
 - estaciones como `Plaza de Mayo`, `Retiro`, `Leandro N. Alem` y `Constitucion` quedan mejor representadas con el dataset 2024 y muestran con claridad la diferencia entre mercado residencial, atraccion urbana y uso efectivo de la red.
+- el ejercicio 4 agrega un benchmark empirico con SUBE: bajo `P''`, el tiempo medio de viaje cae respecto del escenario uniforme, pero bastante menos que en los modelos gravitatorios, y la betweenness se desplaza con fuerza hacia corredores realmente muy usados de las lineas `B` y `D`.
 
 ## Dependencias
 

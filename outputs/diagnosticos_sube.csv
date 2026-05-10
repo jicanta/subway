@@ -1,0 +1,13 @@
+indicador,valor
+bid_etapas_fuente,https://media.githubusercontent.com/media/EL-BID/Matriz-Origen-Destino-Transporte-Publico/main/resultados/etapas.csv
+bid_paradas_fuente,https://media.githubusercontent.com/media/EL-BID/Matriz-Origen-Destino-Transporte-Publico/main/data/paradas.csv
+bid_lineas_ramales_fuente,https://media.githubusercontent.com/media/EL-BID/Matriz-Origen-Destino-Transporte-Publico/main/data/lineas_ramales.csv
+bid_subte_stops_without_network_station,1
+network_stations_without_bid_stop,0
+subte_stages_total,1038034.0
+subte_stages_complete_od,983259.0
+subte_stages_mapped_to_network,967223.0
+subte_stages_same_station_dropped,23747.0
+subte_stages_used_in_pdd,943476.0
+subte_unique_station_pairs,7641.0
+subte_cross_line_share,0.520524104481725
